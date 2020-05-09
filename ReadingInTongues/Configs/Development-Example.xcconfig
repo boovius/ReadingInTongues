@@ -1,0 +1,7 @@
+// Development.xcconfig
+// Server URL
+API_URL = http:/$()/localhost:3000
+
+// App Settings
+APP_NAME = ReadingInTongues (dev)
+APP_BUNDLE_ID = com.defmethod.ReadingInTongues.dev
