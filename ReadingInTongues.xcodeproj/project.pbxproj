@@ -36,6 +36,8 @@
 		5E692F512465C51E00927FFB /* Stubbed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E692F4E2465C49E00927FFB /* Stubbed.swift */; };
 		5E692F5B2465E1EA00927FFB /* SwiftUIPullToRefresh in Frameworks */ = {isa = PBXBuildFile; productRef = 5E692F5A2465E1EA00927FFB /* SwiftUIPullToRefresh */; };
 		5E692F5E2465E67300927FFB /* ErrorWithRetryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E692F5D2465E67300927FFB /* ErrorWithRetryView.swift */; };
+		5E8BD61C2479AB6200798F10 /* TranslationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8BD61B2479AB6200798F10 /* TranslationView.swift */; };
+		5E8BD61E2479ADDC00798F10 /* AddTranslationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8BD61D2479ADDC00798F10 /* AddTranslationView.swift */; };
 		5EAC9ACA2460AE1C006A2A1F /* NetworkPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAC9AC92460AE1C006A2A1F /* NetworkPublisher.swift */; };
 		5EAC9ACF2460AE90006A2A1F /* Translation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAC9ACE2460AE90006A2A1F /* Translation.swift */; };
 		5EAC9AD12460AF3D006A2A1F /* TranslationsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAC9AD02460AF3D006A2A1F /* TranslationsListView.swift */; };
@@ -94,6 +96,8 @@
 		5E692F472465BD1500927FFB /* MockNetworkPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkPublisher.swift; sourceTree = "<group>"; };
 		5E692F4E2465C49E00927FFB /* Stubbed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stubbed.swift; sourceTree = "<group>"; };
 		5E692F5D2465E67300927FFB /* ErrorWithRetryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorWithRetryView.swift; sourceTree = "<group>"; };
+		5E8BD61B2479AB6200798F10 /* TranslationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationView.swift; sourceTree = "<group>"; };
+		5E8BD61D2479ADDC00798F10 /* AddTranslationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTranslationView.swift; sourceTree = "<group>"; };
 		5EAC9AC92460AE1C006A2A1F /* NetworkPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkPublisher.swift; sourceTree = "<group>"; };
 		5EAC9ACE2460AE90006A2A1F /* Translation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Translation.swift; sourceTree = "<group>"; };
 		5EAC9AD02460AF3D006A2A1F /* TranslationsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationsListView.swift; sourceTree = "<group>"; };
@@ -254,15 +258,6 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		5E692F4324644B2F00927FFB /* TranslationsList */ = {
-			isa = PBXGroup;
-			children = (
-				5EAC9AD22460AF9B006A2A1F /* TranslationsListViewModel.swift */,
-				5EAC9AD02460AF3D006A2A1F /* TranslationsListView.swift */,
-			);
-			path = TranslationsList;
-			sourceTree = "<group>";
-		};
 		5E692F462465BCFC00927FFB /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
@@ -290,8 +285,11 @@
 		5EAC9AC72460ADDF006A2A1F /* Translations */ = {
 			isa = PBXGroup;
 			children = (
-				5E692F4324644B2F00927FFB /* TranslationsList */,
+				5EAC9AD22460AF9B006A2A1F /* TranslationsListViewModel.swift */,
+				5EAC9AD02460AF3D006A2A1F /* TranslationsListView.swift */,
 				5EAC9AD42460B26F006A2A1F /* NetworkPublisher+Creations.swift */,
+				5E8BD61B2479AB6200798F10 /* TranslationView.swift */,
+				5E8BD61D2479ADDC00798F10 /* AddTranslationView.swift */,
 			);
 			path = Translations;
 			sourceTree = "<group>";
@@ -430,6 +428,7 @@
 				5E692F5E2465E67300927FFB /* ErrorWithRetryView.swift in Sources */,
 				065867A4242EA07100AB793B /* ErrorResponse.swift in Sources */,
 				5EAC9AD12460AF3D006A2A1F /* TranslationsListView.swift in Sources */,
+				5E8BD61C2479AB6200798F10 /* TranslationView.swift in Sources */,
 				06F2EDF8242A849E00E89C5B /* User.swift in Sources */,
 				5EAC9AD52460B26F006A2A1F /* NetworkPublisher+Creations.swift in Sources */,
 				5EAC9AD32460AF9B006A2A1F /* TranslationsListViewModel.swift in Sources */,
@@ -444,6 +443,7 @@
 				0676B5F72433D0C60096CFD2 /* Config.swift in Sources */,
 				5EAC9ACF2460AE90006A2A1F /* Translation.swift in Sources */,
 				06F2EDFA242A867D00E89C5B /* ServerRequestError.swift in Sources */,
+				5E8BD61E2479ADDC00798F10 /* AddTranslationView.swift in Sources */,
 				06A9C53A242D400F004E9D2A /* Coordinator.swift in Sources */,
 				5EAC9ADE2461E6DC006A2A1F /* ImageCache.swift in Sources */,
 				06A9FB64242A6D9D008B59DE /* NetworkClient.swift in Sources */,
