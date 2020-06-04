@@ -9,11 +9,5 @@
 import Foundation
 
 struct TranslationResponse: Decodable {
-  var data: [Translation]
-}
-
-struct Translation: Hashable, Identifiable, Decodable {
-  var id: UUID?
-  var from: String
-  var to: String
+  var translations: [String]
 }

@@ -14,7 +14,7 @@ class MockNetworkPublisher: NetworkPublisherTranslationsType {
     self.translationResponse = translationResponse
   }
 
-  func publishTranslations() -> AnyPublisher<TranslationResponse, ServerRequestError> {
+  func publishTranslation(for word: String, to target: String) -> AnyPublisher<TranslationResponse, ServerRequestError> {
     Just(translationResponse)
       .mapError { error in ServerRequestError.serverError(message: "oops") }
       .eraseToAnyPublisher()

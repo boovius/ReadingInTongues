@@ -9,19 +9,19 @@
 import SwiftUI
 
 struct TranslationView: View {
-  var translation: Translation
+  @ObservedObject var viewModel: TranslationViewModel
   var body: some View {
     HStack {
-      Text(translation.from)
+      TextField(viewModel.word, text: $viewModel.word)
       Spacer()
-      Text(translation.to)
+      Text("to translate")
     }
   }
 }
 
 struct TranslationView_Previews: PreviewProvider {
     static var previews: some View {
-      let translation = Translation(from: "hablar", to: "to speak")
-      return TranslationView(translation: translation)
+      let viewModel = TranslationViewModel("hablar")
+      return TranslationView(viewModel: viewModel)
     }
 }

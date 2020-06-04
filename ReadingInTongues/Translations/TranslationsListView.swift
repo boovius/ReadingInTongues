@@ -18,21 +18,9 @@ struct TranslationsListView: View {
   }
 
   var body: some View {
-    NavigationView {
-      Group {
-        if viewModel.error != nil {
-          ErrorWithRetryView(text: "Error: \(viewModel.error!.localizedDescription)", action: viewModel.loadTranslations)
-        } else {
-          List {
-            Section(footer: NavToAddWord()) {
-              ForEach(viewModel.translations) { translation in
-                    TranslationView(translation: translation)
-              }
-            }
-          }
-        }
-      }.onAppear(perform: self.viewModel.loadTranslations)
-    }
+    List(viewModel.words, id: \.self){ word in
+      TranslationView(viewModel: TranslationViewModel(word))
+    }.onAppear(perform: viewModel.loadWords)
   }
 }
 

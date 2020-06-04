@@ -16,8 +16,8 @@ class NetworkPublisher {
     self.session = session
   }
 
-  internal func fetchAndPublish<T: Decodable>(from url: URL) -> AnyPublisher<T, ServerRequestError> {
-    session.dataTaskPublisher(for: URLRequest(url: url))
+  internal func fetchAndPublish<T: Decodable>(with urlRequest: URLRequest) -> AnyPublisher<T, ServerRequestError> {
+    session.dataTaskPublisher(for: urlRequest)
       .retry(1)
       .mapError { error in
         print("URLSession Error: \(error.localizedDescription)")

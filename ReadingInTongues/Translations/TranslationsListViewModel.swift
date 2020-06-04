@@ -9,38 +9,37 @@
 import SwiftUI
 import Combine
 
-
 class TranslationsListViewModel: ObservableObject {
   private var cancellable: AnyCancellable?
-  @Published var translations: [Translation] = []
+  @Published var words: [String] = []
   @Published var error: Error?
 }
 
 // MARK: - data source methods
 extension TranslationsListViewModel {
-  func loadTranslations() {
+  func loadWords() {
     error = nil
     do {
-      if let file = Bundle.main.url(forResource: "translations", withExtension: "json") {
+      if let file = Bundle.main.url(forResource: "words-data", withExtension: "json") {
         let data = try Data(contentsOf: file)
-        let translations = try JSONDecoderWrapper().decode([Translation].self, from: data)
-        cancellable = Just(translations)
+        let words = try JSONDecoderWrapper().decode([String].self, from: data)
+        cancellable = Just(words)
           .receive(on: DispatchQueue.main)
           .sink(
             receiveCompletion: { [weak self] completion in
               guard let self = self else { return }
               switch completion {
               case .failure(let error):
-                print("Failure loading Translations: \(error)")
+                print("Failure loading words: \(error)")
                 self.error = error
               case .finished:
-                print("Finished receiving Translations.")
+                print("Finished receiving words.")
               }
 
             },
-            receiveValue: { [weak self] translations in
+            receiveValue: { [weak self] words in
               guard let self = self else { return }
-              self.translations = translations
+              self.words = words
           })
       }
     } catch {
