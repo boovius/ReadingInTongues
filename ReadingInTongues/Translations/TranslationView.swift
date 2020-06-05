@@ -14,10 +14,18 @@ struct TranslationView<ViewModel>: View where ViewModel: TranslationViewModelTyp
   @ObservedObject var viewModel: ViewModel
 
   var body: some View {
-    HStack {
-      TextField(viewModel.word, text: $viewModel.word)
-      Spacer()
-      Text(viewModel.translation)
+    GeometryReader { geometry in
+      HStack {
+        TextField(self.viewModel.word, text: self.$viewModel.word)
+          .background(Color.gray)
+          .opacity(0.5)
+          .frame(width: geometry.size.width/2)
+          .multilineTextAlignment(.center)
+          .cornerRadius(5.0)
+        Text(self.viewModel.translation)
+          .frame(width: geometry.size.width/2)
+          .multilineTextAlignment(.center)
+      }
     }
   }
 }
