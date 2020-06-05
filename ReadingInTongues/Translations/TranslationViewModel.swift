@@ -24,13 +24,21 @@ class TranslationViewModel:  TranslationViewModelType {
 
   init(_ word: String,
        networkPublisher: NetworkPublisherTranslationsType = NetworkPublisher(),
-       scheduler: DispatchQueue = DispatchQueue(label: "WordTranslation")
+       scheduler: DispatchQueue = DispatchQueue(label: "WordTranslation"),
+       index: Int,
+       respondToWordAndIndex: @escaping (String, Int) -> Void
   ) {
     self.word = word
     self.networkPublisher = networkPublisher
 
     $word
-//      .dropFirst(1)
+//      .dropFirst(1) - uncomment this to disable translation upon loading initial word
+      // .print() - uncomment this to show the subject is a CurrentValueSubject
+      .map { word in
+        print("word", word)
+        respondToWordAndIndex(word, index)
+        return word
+      }
       .debounce(for: .seconds(0.5), scheduler: scheduler)
       .sink(receiveValue: translate(word:))
       .store(in: &subscriptions)

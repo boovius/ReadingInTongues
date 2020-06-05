@@ -49,6 +49,12 @@ extension TranslationsListViewModel {
     }
   }
 
+  func addEmptyWordIfLastHasValue(word: String, index: Int) {
+    if (word != "" && index + 1 == self.words.count) {
+      words.append("")
+    }
+  }
+
   private func appendEmptyWord(to words: inout [String]) {
     if (words[words.count - 1] != "") {
       words.append("")

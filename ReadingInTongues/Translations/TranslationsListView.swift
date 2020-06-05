@@ -18,8 +18,8 @@ struct TranslationsListView: View {
   }
 
   var body: some View {
-    List(viewModel.words, id: \.self){ word in
-      TranslationView(viewModel: TranslationViewModel(word))
+    List(viewModel.words.indices, id: \.self){ index in
+      TranslationView(viewModel: TranslationViewModel(self.viewModel.words[index], index: index, respondToWordAndIndex: self.viewModel.addEmptyWordIfLastHasValue))
     }.onAppear(perform: viewModel.loadWords)
   }
 }
