@@ -39,11 +39,19 @@ extension TranslationsListViewModel {
             },
             receiveValue: { [weak self] words in
               guard let self = self else { return }
-              self.words = words
+              var updatedWords = words
+              self.appendEmptyWord(to: &updatedWords)
+              self.words = updatedWords
           })
       }
     } catch {
       self.error = error
+    }
+  }
+
+  private func appendEmptyWord(to words: inout [String]) {
+    if (words[words.count - 1] != "") {
+      words.append("")
     }
   }
 }
