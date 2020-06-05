@@ -45,6 +45,5 @@ extension TranslationsListViewModel {
     } catch {
       self.error = error
     }
-
   }
 }
