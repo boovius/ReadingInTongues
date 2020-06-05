@@ -31,7 +31,7 @@ class TranslationViewModel: ObservableObject {
   }
 
   func translate(word: String) {
-    networkPublisher.publishTranslation(for: word, to: "en")
+    _ = networkPublisher.publishTranslation(for: word, to: "en")
       .receive(on: DispatchQueue.main)
       .sink(
         receiveCompletion: { completion in
@@ -46,6 +46,6 @@ class TranslationViewModel: ObservableObject {
         guard let self = self else { return }
         self.translation = response.translations.joined(separator: ", ")
       }
-    )
+    ).store(in: &subscriptions)
   }
 }
