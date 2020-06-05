@@ -12,6 +12,7 @@ import Combine
 class TranslationViewModel: ObservableObject {
   @Published var translation: String = ""
   @Published var word: String
+  @Published var error: Error?
   private var networkPublisher: NetworkPublisherTranslationsType
   private var subscriptions = Set<AnyCancellable>()
 
@@ -39,6 +40,7 @@ class TranslationViewModel: ObservableObject {
             print("translation completed", completion)
           case .failure(let error):
             print("failure in translation", error)
+            self.error = error
           }
       }, receiveValue: { [weak self] response in
         guard let self = self else { return }
