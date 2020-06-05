@@ -14,7 +14,7 @@ struct TranslationView: View {
     HStack {
       TextField(viewModel.word, text: $viewModel.word)
       Spacer()
-      Text("to translate")
+      Text(viewModel.translation)
     }
   }
 }
