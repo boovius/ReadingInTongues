@@ -8,8 +8,11 @@
 
 import SwiftUI
 
-struct TranslationView: View {
-  @ObservedObject var viewModel: TranslationViewModel
+// Genericized viewModel: https://stackoverflow.com/questions/59503399/how-to-define-a-protocol-as-a-type-for-a-observedobject-property
+
+struct TranslationView<ViewModel>: View where ViewModel: TranslationViewModelType {
+  @ObservedObject var viewModel: ViewModel
+
   var body: some View {
     HStack {
       TextField(viewModel.word, text: $viewModel.word)
@@ -21,7 +24,7 @@ struct TranslationView: View {
 
 struct TranslationView_Previews: PreviewProvider {
     static var previews: some View {
-      let viewModel = TranslationViewModel("hablar")
+      let viewModel = MockTranslationViewModel()
       return TranslationView(viewModel: viewModel)
     }
 }

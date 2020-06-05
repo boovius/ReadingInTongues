@@ -9,7 +9,13 @@
 import SwiftUI
 import Combine
 
-class TranslationViewModel: ObservableObject {
+protocol TranslationViewModelType: ObservableObject {
+  var translation: String { get set }
+  var word: String { get set }
+  var error: Error? { get set }
+}
+
+class TranslationViewModel:  TranslationViewModelType {
   @Published var translation: String = ""
   @Published var word: String
   @Published var error: Error?
@@ -24,7 +30,7 @@ class TranslationViewModel: ObservableObject {
     self.networkPublisher = networkPublisher
 
     $word
-      .dropFirst(1)
+//      .dropFirst(1)
       .debounce(for: .seconds(0.5), scheduler: scheduler)
       .sink(receiveValue: translate(word:))
       .store(in: &subscriptions)

@@ -24,13 +24,14 @@ struct TranslationsListView: View {
   }
 }
 
-struct NavToAddWord: View {
-  var body: some View {
-    NavigationLink(destination: AddTranslationView()) {
-      Button(action: {}) { Text("Add Word") }
-    }.buttonStyle(PlainButtonStyle())
-  }
-}
+// TODO: remove this?
+//struct NavToAddWord: View {
+//  var body: some View {
+//    NavigationLink(destination: AddTranslationView()) {
+//      Button(action: {}) { Text("Add Word") }
+//    }.buttonStyle(PlainButtonStyle())
+//  }
+//}
 
 struct TranslationsListView_Previews: PreviewProvider {
   static var previews: some View {
