@@ -18,6 +18,7 @@ protocol TranslationViewModelType: ObservableObject {
 class TranslationViewModel:  TranslationViewModelType {
   @Published var translation: String = ""
   @Published var word: String
+  @Published var index: Int
   @Published var error: Error?
   private var networkPublisher: NetworkPublisherTranslationsType
   private var subscriptions = Set<AnyCancellable>()
@@ -26,25 +27,30 @@ class TranslationViewModel:  TranslationViewModelType {
        networkPublisher: NetworkPublisherTranslationsType = NetworkPublisher(),
        scheduler: DispatchQueue = DispatchQueue(label: "WordTranslation"),
        index: Int,
-       respondToWordAndIndex: @escaping (String, Int) -> Void
+       subscriber: TranslationsListViewModel
   ) {
     self.word = word
+    self.index = index
     self.networkPublisher = networkPublisher
 
     $word
 //      .dropFirst(1) - uncomment this to disable translation upon loading initial word
       // .print() - uncomment this to show the subject is a CurrentValueSubject
-      .map { word in
-        print("word", word)
-        respondToWordAndIndex(word, index)
-        return word
-      }
       .debounce(for: .seconds(0.5), scheduler: scheduler)
-      .sink(receiveValue: translate(word:))
+      .sink(receiveValue: handleInput(word:))
+      .store(in: &subscriptions)
+
+    let indexPub = CurrentValueSubject<Int, Never>(index)
+    $word
+      .combineLatest(indexPub)
+      .sink(receiveValue: {
+        print("Received combined", $0)
+        subscriber.updateWords(with: $0, at: $1)
+      })
       .store(in: &subscriptions)
   }
 
-  func translate(word: String) {
+  func handleInput(word: String) {
     _ = networkPublisher.publishTranslation(for: word, to: "en")
       .receive(on: DispatchQueue.main)
       .sink(

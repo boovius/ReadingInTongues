@@ -10,9 +10,36 @@ import SwiftUI
 import Combine
 
 class TranslationsListViewModel: ObservableObject {
+//  typealias Input = String
+//
+//  typealias Failure = Never
+
   private var cancellable: AnyCancellable?
   @Published var words: [String] = []
   @Published var error: Error?
+
+  // TODO: see if this the callback stuff below can get moved into this subscription stuff here
+//  func receive(subscription: Subscription) {
+//    subscription.request(.unlimited)
+//  }
+//
+//  func receive(_ input: String) -> Subscribers.Demand {
+//    print("Received value", input)
+//    return .none
+//  }
+//
+//  func receive(completion: Subscribers.Completion<Never>) {
+//    print("Received Completion", completion)
+//  }
+
+  func updateWords(with word: String, at index: Int) {
+    if (words[index] != word) {
+      words[index] = word
+    }
+    if (index + 1 == words.count && word != "") {
+      words.append("")
+    }
+  }
 }
 
 // MARK: - data source methods
@@ -46,12 +73,6 @@ extension TranslationsListViewModel {
       }
     } catch {
       self.error = error
-    }
-  }
-
-  func addEmptyWordIfLastHasValue(word: String, index: Int) {
-    if (word != "" && index + 1 == self.words.count) {
-      words.append("")
     }
   }
 

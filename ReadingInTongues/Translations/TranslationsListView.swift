@@ -19,19 +19,11 @@ struct TranslationsListView: View {
 
   var body: some View {
     List(viewModel.words.indices, id: \.self){ index in
-      TranslationView(viewModel: TranslationViewModel(self.viewModel.words[index], index: index, respondToWordAndIndex: self.viewModel.addEmptyWordIfLastHasValue))
+      TranslationView(viewModel: TranslationViewModel(self.viewModel.words[index], index: index, subscriber: self.viewModel)
+      )
     }.onAppear(perform: viewModel.loadWords)
   }
 }
-
-// TODO: remove this?
-//struct NavToAddWord: View {
-//  var body: some View {
-//    NavigationLink(destination: AddTranslationView()) {
-//      Button(action: {}) { Text("Add Word") }
-//    }.buttonStyle(PlainButtonStyle())
-//  }
-//}
 
 struct TranslationsListView_Previews: PreviewProvider {
   static var previews: some View {
